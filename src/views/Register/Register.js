@@ -1,62 +1,79 @@
-import React from 'react'
-import './registration.css'
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
+// import React from 'react'
+// import './Register.css'
+// import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
 
-function Register() {
-  ;<div className='containerDiv'>
-    <Container style={{ marginBottom: '150px' }}>
-      <Row noGutters={true}>
-        <Col sm={12} md={12} lg={6}></Col>
-        <Col sm={12} md={12} lg={6}>
-          <Card className='text-center cards registerCard'>
-            <Card.Title className='title'>Welcome to nosTech</Card.Title>
-            <Card.Text style={{ marginBottom: '30px', fontSize: '14px' }}>
-              Please enter your credentials to set up an account with us!
-            </Card.Text>
-            <Form>
-              <Form.Group controlId='formBasicName'>
-                <Form.Control type='text' name='name' placeholder='Full Name' />
-              </Form.Group>
-              <Form.Group controlId='formBasicUsername'>
-                <Form.Control
-                  type='text'
-                  name='username'
-                  placeholder='Username'
-                />
-              </Form.Group>
-              <Form.Group controlId='formBasicEmail'>
-                <Form.Control type='text' name='email' placeholder='Email' />
-              </Form.Group>
-              <Form.Group controlId='formBasicPassword'>
-                <Form.Control
-                  type='password'
-                  name='password'
-                  placeholder='Password'
-                />
-              </Form.Group>
-              <Form.Group controlId='exampleForm.SelectCustom'>
-                <Form.Label style={{ fontSize: '14px' }}>
-                  You are registering as a:
-                </Form.Label>
-                <Form.Group controlId='exampleForm.SelectCustom'>
-                  <Form.Control as='select' required={true} custom>
-                    <option hidden value='choose'>
-                      ---Choose one---
-                    </option>
-                    <option value='user'>Student</option>
-                    <option value='admin'>Teacher</option>
-                  </Form.Control>
-                </Form.Group>
-              </Form.Group>
-              <Button className='register' type='submit'>
-                SUBMIT
-              </Button>
-            </Form>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  </div>
-}
+// function Register() {
+//   return (
+//     <div className='container-md'>
+//   <div className='row'>
+//   <div className='left col-sm-12 col-md-12 col-lg-6'>
+//     <h5>
+//       If you want to use our eVoting platform, all you need to do is to
+//       fill the fields required to the right section of this page
+//     </h5>
+//     <h5>
+//       Mention: <br></br> Your credentials remain private to us!
+//     </h5>
+//     <img src='./views/Register/voting-proxy-evoting.jpg' alt=''></img>
+//   </div>
+//   <div className='right col-sm-12 col-md-12 col-lg-6'>
+//     <h4>Welcome to our eVoting platform's registration form</h4>
+//     <form>
+//       <div className='row row-fields row-1'>
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <input placeholder='First Name'></input>
+//         </div>
 
-export default Register
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <input placeholder='Last Name'></input>
+//         </div>
+
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <input placeholder='Email'></input>
+//         </div>
+
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <input type='password' placeholder='Password'></input>
+//         </div>
+
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <label for='gender'>Gender:</label>
+//           <br></br>
+//           <select name='gender' id='gender'>
+//             <option value='female'>--Choose your gender--</option>
+//             <option value='female'>Female</option>
+//             <option value='male'>Male</option>
+//           </select>
+//         </div>
+
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <label for='bDay'>Birthday</label>
+//           <br></br>
+//           <input type='date'></input>
+//         </div>
+
+//         <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+//           <label for='gender'>You are registering as:</label>
+//           <br></br>
+//           <select name='role' id='role'>
+//             <option value='role'>--Choose your role--</option>
+//             <option value='Voter'>Female</option>
+//             <option value='Creator'>Male</option>
+//           </select>
+//         </div>
+//         <button
+//           type='submit'
+//           label='send'
+//           className='btn submit-btn btn-outline-dark btn pseudoBtn'
+//         >
+//           Submit
+//         </button>
+//       </div>
+//     </form>
+//   </div>
+// </div>
+// </div>
+//   )
+// }
+
+// export default Register
