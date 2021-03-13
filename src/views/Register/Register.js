@@ -1,6 +1,5 @@
 // import React from 'react'
 // import './Register.css'
-// import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
 
 // function Register() {
 //   return (
