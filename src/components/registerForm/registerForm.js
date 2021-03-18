@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Formik } from 'formik'
-import * as Yup from 'yup'
 import axios from 'axios'
+import * as Yup from 'yup'
 
 import Error from '../Error/Error'
 import './registerForm.css'
@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
     .min(8, 'Password is too short - should be 8 chars minimum.'),
 })
 
-class RegisterForm extends React.Component {
+class RegisterForm extends Component {
   constructor() {
     super()
     this.state = {
