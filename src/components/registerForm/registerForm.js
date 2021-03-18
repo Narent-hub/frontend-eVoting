@@ -152,6 +152,15 @@ class RegisterForm extends Component {
                 </div>
 
                 <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                  <label for='gender'>You are a:</label>
+                  <br></br>
+                  <select name='role' id='role' required>
+                    <option value='role'>--Choose your role--</option>
+                    <option value='Voter'>Admin</option>
+                    <option value='Creator'>User</option>
+                  </select>
+                </div>
+                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <label for='gender'>You are registering as:</label>
                   <br></br>
                   <select name='role' id='role' required>
