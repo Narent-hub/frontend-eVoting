@@ -4,18 +4,7 @@ export default function OrganizerForm() {
   return (
     <form>
       <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
-        <input
-          name='title'
-          type='text'
-          placeholder='Election Title'
-          // onChange={handleChange}
-          // onBlur={handleBlur}
-          // value={values.email}
-          // className={
-          //   touched.email && errors.email ? 'has-error' : null
-          // }
-        ></input>
-        {/* <Error touched={touched.email} message={errors.email} /> */}
+        <input name='title' type='text' placeholder='Election Title'></input>
       </div>
 
       <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
@@ -23,35 +12,17 @@ export default function OrganizerForm() {
           name='organization'
           type='text'
           placeholder='Organization name'
-          // onChange={handleChange}
-          // onBlur={handleBlur}
-          // value={values.email}
-          // className={
-          //   touched.email && errors.email ? 'has-error' : null
-          // }
         ></input>
-        {/* <Error touched={touched.email} message={errors.email} /> */}
       </div>
 
       <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
-        <input
-          name='contact'
-          type='tel'
-          placeholder='Contact Info'
-          // onChange={handleChange}
-          // onBlur={handleBlur}
-          // value={values.email}
-          // className={
-          //   touched.email && errors.email ? 'has-error' : null
-          // }
-        ></input>
-        {/* <Error touched={touched.email} message={errors.email} /> */}
+        <input name='contact' type='tel' placeholder='Contact Info'></input>
       </div>
 
       <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
         <select
           name='industry'
-          id='gender'
+          id='industry'
           // value={values.role}
           // onChange={handleChange}
           // onBlur={handleBlur}

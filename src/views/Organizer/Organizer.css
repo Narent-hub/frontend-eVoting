@@ -1,7 +1,10 @@
 .main {
   padding: 5% 25%;
-  margin: 0 auto;
 }
-p {
-  margin: 5% 10;
+.para p {
+  align-items: center;
+}
+.formWrapper {
+  border-right: lightgray 0.5px solid;
+  border-left: lightgray 0.5px solid;
 }
