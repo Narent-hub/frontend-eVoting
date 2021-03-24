@@ -41,8 +41,7 @@ export default function OrganizerForm() {
 
       <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
         <button className='btnn'>Submit</button>
-        <a href='/'>
-          {' '}
+        <a href>
           <button className='btnn'>Preview</button>{' '}
         </a>
       </div>
