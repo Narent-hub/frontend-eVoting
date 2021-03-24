@@ -22,6 +22,10 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required('Must type a password')
     .min(8, 'Password is too short - should be 8 chars minimum.'),
+  gender: Yup.string().required('This field is required'),
+  birthdate: Yup.string().required('This field is required'),
+  role: Yup.string().required('This field is required'),
+  type: Yup.string().required('This field is required'),
 })
 
 class RegisterForm extends Component {
@@ -45,6 +49,7 @@ class RegisterForm extends Component {
         return console.log(response)
       })
   }
+
   render() {
     return (
       <div className='right col-sm-12 col-md-12 col-lg-6'>
@@ -55,6 +60,10 @@ class RegisterForm extends Component {
             l_name: '',
             email: '',
             password: '',
+            gender: '',
+            dateofbirth: '',
+            role: '',
+            type: '',
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -136,38 +145,79 @@ class RegisterForm extends Component {
                 </div>
 
                 <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label for='gender'>Gender:</label>
+                  <label>Gender:</label>
                   <br></br>
-                  <select name='gender' id='gender' required>
+                  <select
+                    name='gender'
+                    id='gender'
+                    value={values.role}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      touched.gender && errors.gender ? 'has-error' : null
+                    }
+                  >
                     <option value='female'>--Choose your gender--</option>
                     <option value='female'>Female</option>
                     <option value='male'>Male</option>
                   </select>
+                  <Error touched={touched.gender} message={errors.gender} />
                 </div>
 
                 <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label for='bDay'>Birthday</label>
+                  <label>Birthday</label>
                   <br></br>
-                  <input name='dateofbirth' type='date'></input>
+                  <input
+                    name='dateofbirth'
+                    type='date'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.dateofbirth}
+                    className={
+                      touched.dateofbirth && errors.dateofbirth
+                        ? 'has-error'
+                        : null
+                    }
+                  ></input>
+                  <Error
+                    touched={touched.dateofbirth}
+                    message={errors.dateofbirth}
+                  />
                 </div>
 
                 <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label for='gender'>You are a:</label>
+                  <label>You are a:</label>
                   <br></br>
-                  <select name='role' id='role' required>
+                  <select
+                    name='role'
+                    value={values.role}
+                    id='role'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={touched.role && errors.role ? 'has-error' : null}
+                  >
                     <option value='role'>--Choose your role--</option>
                     <option value='Voter'>Admin</option>
                     <option value='Creator'>User</option>
                   </select>
+                  <Error touched={touched.role} message={errors.role} />
                 </div>
                 <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label for='gender'>You are registering as:</label>
+                  <label>You are registering as:</label>
                   <br></br>
-                  <select name='role' id='role' required>
-                    <option value='role'>--Choose your role--</option>
+                  <select
+                    name='type'
+                    id='type'
+                    value={values.type}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={touched.type && errors.type ? 'has-error' : null}
+                  >
+                    <option value='type'>--Choose your role--</option>
                     <option value='Voter'>Creator/Organizer</option>
                     <option value='Creator'>Voter/Participant</option>
                   </select>
+                  <Error touched={touched.type} message={errors.type} />
                 </div>
                 <button
                   type='submit'
