@@ -1,0 +1,11 @@
+.formInput.form-group.mobile-col.col-sm-12.col-md-6.col-lg-12 {
+  margin: 5% 10%;
+}
+
+.form-group,
+input {
+  height: 40px;
+}
+.btnn {
+  margin-right: 10%;
+}
