@@ -1,6 +1,6 @@
-import React from 'react';
-import './Cards.css';
-import CardItem from './CardItem';
+import React from 'react'
+import './Cards.css'
+import CardItem from '../CardItem/CardItem'
 
 function Cards() {
   return (
@@ -45,7 +45,7 @@ function Cards() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Cards;
+export default Cards

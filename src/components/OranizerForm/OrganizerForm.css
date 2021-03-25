@@ -12,6 +12,11 @@ input {
 }
 .para p {
   margin: 5% 25%;
+  font-size: 12px;
+}
+.pollDate {
+  font-size: 12px;
+  color: red;
 }
 .btnn {
   margin-right: 10%;
