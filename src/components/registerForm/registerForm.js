@@ -82,9 +82,9 @@ class RegisterForm extends Component {
             handleSubmit,
             isSubmitting,
           }) => (
-            <form onSubmit={shandleSubmit}>
+            <form onSubmit={this.handleSubmit}>
               <div className='row row-fields row-1'>
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
                     name='f_name'
                     type='text'
@@ -99,7 +99,7 @@ class RegisterForm extends Component {
                   <Error touched={touched.f_name} message={errors.f_name} />
                 </div>
 
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
                     name='l_name'
                     type='text'
@@ -114,7 +114,7 @@ class RegisterForm extends Component {
                   <Error touched={touched.l_name} message={errors.l_name} />
                 </div>
 
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
                     name='email'
                     type='email'
@@ -129,7 +129,7 @@ class RegisterForm extends Component {
                   <Error touched={touched.email} message={errors.email} />
                 </div>
 
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
                     name='password'
                     type='password'
@@ -144,7 +144,7 @@ class RegisterForm extends Component {
                   <Error touched={touched.password} message={errors.password} />
                 </div>
 
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <label>Gender:</label>
                   <br></br>
                   <select
@@ -164,7 +164,7 @@ class RegisterForm extends Component {
                   <Error touched={touched.gender} message={errors.gender} />
                 </div>
 
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <label>Birthday</label>
                   <br></br>
                   <input
@@ -185,7 +185,7 @@ class RegisterForm extends Component {
                   />
                 </div>
 
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <label>You are a:</label>
                   <br></br>
                   <select
@@ -202,7 +202,7 @@ class RegisterForm extends Component {
                   </select>
                   <Error touched={touched.role} message={errors.role} />
                 </div>
-                <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <label>You are registering as:</label>
                   <br></br>
                   <select
