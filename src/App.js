@@ -8,6 +8,7 @@ import Products from './components/pages/Products'
 import SignUp from './components/pages/SignUp'
 import Register from './views/Register/Register'
 import Organizer from './views/Organizer/Organizer'
+import Login from './views/Login/login'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/sign-up' component={SignUp} />
           <Route path='/register' component={Register} />
           <Route path='/organizer' component={Organizer} />
+          <Route path='/login' component={Login}/>
         </Switch>
       </Router>
     </>
