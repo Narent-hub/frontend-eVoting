@@ -7,6 +7,7 @@ import Services from './views/Services/Services'
 import Products from './views/Products/Products'
 import SignUp from './views/Register/Register'
 import Organizer from './views/Organizer/Organizer'
+import Login from './views/Login/login'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route path='/' exact component={Home} />
+          <Route path='/login' exact component={Login} />
           <Route path='/services' component={Services} />
           <Route path='/products' component={Products} />
           <Route path='/register' component={SignUp} />
