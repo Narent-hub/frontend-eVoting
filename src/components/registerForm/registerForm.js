@@ -69,7 +69,7 @@ class RegisterForm extends Component {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setTimeout(() => {
               resetForm()
-              setSubmitting(false)
+              setSubmitting(true)
             }, 500)
           }}
         >
@@ -82,7 +82,7 @@ class RegisterForm extends Component {
             handleSubmit,
             isSubmitting,
           }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={shandleSubmit}>
               <div className='row row-fields row-1'>
                 <div className='formInput form-group mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
@@ -150,7 +150,7 @@ class RegisterForm extends Component {
                   <select
                     name='gender'
                     id='gender'
-                    value={values.role}
+                    value={values.gender}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
@@ -172,7 +172,7 @@ class RegisterForm extends Component {
                     type='date'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.dateofbirth}
+                    value={this.state.dateofbirth}
                     className={
                       touched.dateofbirth && errors.dateofbirth
                         ? 'has-error'
@@ -190,8 +190,8 @@ class RegisterForm extends Component {
                   <br></br>
                   <select
                     name='role'
-                    value={values.role}
                     id='role'
+                    value={values.role}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={touched.role && errors.role ? 'has-error' : null}
