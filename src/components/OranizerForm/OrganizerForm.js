@@ -1,4 +1,4 @@
-import './OrganizerForm.css'
+import './OrganizerForm.scss'
 
 export default function OrganizerForm() {
   return (

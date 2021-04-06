@@ -4,7 +4,7 @@ import axios from 'axios'
 import * as Yup from 'yup'
 
 import Error from '../Error/Error'
-import './registerForm.css'
+import './registerForm.scss'
 
 const validationSchema = Yup.object().shape({
   f_name: Yup.string()
@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
     .required('Must type a password')
     .min(8, 'Password is too short - should be 8 chars minimum.'),
   gender: Yup.string().required('This field is required'),
-  birthdate: Yup.string().required('This field is required'),
+  birthday: Yup.string().required('This field is required'),
   role: Yup.string().required('This field is required'),
   type: Yup.string().required('This field is required'),
 })
@@ -32,22 +32,85 @@ class RegisterForm extends Component {
   constructor() {
     super()
     this.state = {
-      firstName: '',
-      lastName: '',
+      f_name: '',
+      l_name: '',
       email: '',
       password: '',
       gender: '',
-      birthdate: '',
+      birthday: '',
       role: '',
+      type: '',
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
+  firsthandler = (event) => {
+    this.setState({
+      f_name: event.target.value,
+    })
+  }
+
+  lasthandler = (event) => {
+    this.setState({
+      l_name: event.target.value,
+    })
+  }
+
+  emailhandler = (event) => {
+    this.setState({
+      email: event.target.value,
+    })
+  }
+
+  passwordhandler = (event) => {
+    this.setState({
+      password: event.target.value,
+    })
+  }
+
+  genderhandler = (event) => {
+    this.setState({
+      gender: event.target.value,
+    })
+  }
+
+  birthdayhandler = (event) => {
+    this.setState({
+      birthday: event.target.value,
+    })
+  }
+
+  rolehandler = (event) => {
+    this.setState({
+      role: event.target.value,
+    })
+  }
+
+  typehandler = (event) => {
+    this.setState({
+      type: event.target.value,
+    })
+  }
+
+  handleSubmit = (event) => {
     axios
-      .post('/http://127.0.0.1:8000/api/user', this.state)
+      .post('http://127.0.0.1:8000/api/registeredusers', this.state)
       .then((response) => {
         return console.log(response)
       })
+    alert(`${this.state.f_name} ${this.state.l_name} Registered Successfully`)
+    console.log(this.state)
+    this.state({
+      f_name: '',
+      l_name: '',
+      email: '',
+      password: '',
+      gender: '',
+      birthday: '',
+      role: '',
+      type: '',
+    })
+    event.preventDefault()
   }
 
   render() {
@@ -61,7 +124,7 @@ class RegisterForm extends Component {
             email: '',
             password: '',
             gender: '',
-            dateofbirth: '',
+            birthday: '',
             role: '',
             type: '',
           }}
@@ -73,15 +136,7 @@ class RegisterForm extends Component {
             }, 500)
           }}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-          }) => (
+          {({ values, errors, touched, handleBlur, isSubmitting }) => (
             <form onSubmit={this.handleSubmit}>
               <div className='row row-fields row-1'>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
@@ -89,9 +144,9 @@ class RegisterForm extends Component {
                     name='f_name'
                     type='text'
                     placeholder='First Name'
-                    onChange={handleChange}
+                    onChange={this.firsthandler}
                     onBlur={handleBlur}
-                    value={values.f_name}
+                    value={this.state.f_name}
                     className={
                       touched.f_name && errors.f_name ? 'has-error' : null
                     }
@@ -104,9 +159,9 @@ class RegisterForm extends Component {
                     name='l_name'
                     type='text'
                     placeholder='Last Name'
-                    onChange={handleChange}
+                    onChange={this.lasthandler}
                     onBlur={handleBlur}
-                    value={values.l_name}
+                    value={this.state.l_name}
                     className={
                       touched.l_name && errors.l_name ? 'has-error' : null
                     }
@@ -119,9 +174,9 @@ class RegisterForm extends Component {
                     name='email'
                     type='email'
                     placeholder='Email'
-                    onChange={handleChange}
+                    onChange={this.emailhandler}
                     onBlur={handleBlur}
-                    value={values.email}
+                    value={this.state.email}
                     className={
                       touched.email && errors.email ? 'has-error' : null
                     }
@@ -134,9 +189,9 @@ class RegisterForm extends Component {
                     name='password'
                     type='password'
                     placeholder='Password'
-                    onChange={handleChange}
+                    onChange={this.passwordhandler}
                     onBlur={handleBlur}
-                    value={values.password}
+                    value={this.state.password}
                     className={
                       touched.password && errors.password ? 'has-error' : null
                     }
@@ -145,19 +200,20 @@ class RegisterForm extends Component {
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label>Gender:</label>
+                  {/* <label>Gender:</label> */}
                   <br></br>
                   <select
                     name='gender'
                     id='gender'
                     value={values.gender}
-                    onChange={handleChange}
+                    onChange={this.genderhandler}
+                    defaultValue='Select Gender'
                     onBlur={handleBlur}
                     className={
                       touched.gender && errors.gender ? 'has-error' : null
                     }
                   >
-                    <option value='female'>--Choose your gender--</option>
+                    <option defaultValue>Choose your gender</option>
                     <option value='female'>Female</option>
                     <option value='male'>Male</option>
                   </select>
@@ -168,52 +224,49 @@ class RegisterForm extends Component {
                   <label>Birthday</label>
                   <br></br>
                   <input
-                    name='dateofbirth'
+                    name='birthday'
                     type='date'
-                    onChange={handleChange}
+                    onChange={this.birthdayhandler}
                     onBlur={handleBlur}
-                    value={this.state.dateofbirth}
+                    value={this.state.birthday}
                     className={
-                      touched.dateofbirth && errors.dateofbirth
-                        ? 'has-error'
-                        : null
+                      touched.birthday && errors.birthday ? 'has-error' : null
                     }
                   ></input>
-                  <Error
-                    touched={touched.dateofbirth}
-                    message={errors.dateofbirth}
-                  />
+                  <Error touched={touched.birthday} message={errors.birthday} />
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label>You are a:</label>
+                  {/* <label>You are a:</label> */}
                   <br></br>
                   <select
                     name='role'
                     id='role'
                     value={values.role}
-                    onChange={handleChange}
+                    onChange={this.rolehandler}
+                    defaultValue='Select Role'
                     onBlur={handleBlur}
                     className={touched.role && errors.role ? 'has-error' : null}
                   >
-                    <option value='role'>--Choose your role--</option>
+                    <option defaultValue>Choose your role</option>
                     <option value='Voter'>Admin</option>
                     <option value='Creator'>User</option>
                   </select>
                   <Error touched={touched.role} message={errors.role} />
                 </div>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label>You are registering as:</label>
+                  {/* <label>You are registering as:</label> */}
                   <br></br>
                   <select
                     name='type'
                     id='type'
                     value={values.type}
-                    onChange={handleChange}
+                    onChange={this.typehandler}
+                    defaultValue='Select your type'
                     onBlur={handleBlur}
                     className={touched.type && errors.type ? 'has-error' : null}
                   >
-                    <option value='type'>--Choose your role--</option>
+                    <option defaultValue>--Choose your role--</option>
                     <option value='Voter'>Creator/Organizer</option>
                     <option value='Creator'>Voter/Participant</option>
                   </select>
