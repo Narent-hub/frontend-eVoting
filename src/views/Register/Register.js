@@ -1,5 +1,5 @@
 import React from 'react'
-import './Register.css'
+import './Register.scss'
 import RegisterForm from '../../components/registerForm/registerForm'
 import voting from './voting-proxy-evoting.jpg'
 

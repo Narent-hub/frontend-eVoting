@@ -1,0 +1,30 @@
+.right {
+  padding-top: 7%;
+}
+
+form {
+  padding: 0 0 6% 4%;
+  .row.row-fields.row-1 {
+    padding-top: 5%;
+    .formInput {
+      margin: 0.5% auto;
+      input {
+        padding-left: 0.8%;
+        margin: auto;
+        width: 50%;
+      }
+      #gender,
+      #role,
+      #type {
+        height: 40px;
+        border-radius: 6px;
+      }
+    }
+    .submit-btn {
+      align-self: center;
+      vertical-align: middle;
+      margin: 4% 0 0 2%;
+      width: 50%;
+    }
+  }
+}
