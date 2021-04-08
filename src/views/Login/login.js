@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import loginImg from './login.svg'
-import './login.css'
-import { propTypes } from 'react-bootstrap/esm/Image'
+import './login.scss'
 
 async function login(email, password) {
   let item = { email, password }
