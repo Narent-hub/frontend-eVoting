@@ -44,53 +44,11 @@ class RegisterForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  firsthandler = (event) => {
-    this.setState({
-      f_name: event.target.value,
-    })
-  }
-
-  lasthandler = (event) => {
-    this.setState({
-      l_name: event.target.value,
-    })
-  }
-
-  emailhandler = (event) => {
-    this.setState({
-      email: event.target.value,
-    })
-  }
-
-  passwordhandler = (event) => {
-    this.setState({
-      password: event.target.value,
-    })
-  }
-
-  genderhandler = (event) => {
-    this.setState({
-      gender: event.target.value,
-    })
-  }
-
-  birthdayhandler = (event) => {
-    this.setState({
-      birthday: event.target.value,
-    })
-  }
-
-  rolehandler = (event) => {
-    this.setState({
-      role: event.target.value,
-    })
-  }
-
-  typehandler = (event) => {
-    this.setState({
-      type: event.target.value,
-    })
-  }
+  // firsthandler = (event) => {
+  //   this.setState({
+  //     f_name: event.target.value,
+  //   })
+  // }
 
   handleSubmit = (event) => {
     axios
@@ -98,9 +56,9 @@ class RegisterForm extends Component {
       .then((response) => {
         return console.log(response)
       })
-    alert(`${this.state.f_name} ${this.state.l_name} Registered Successfully`)
+
     console.log(this.state)
-    this.state({
+    this.setState({
       f_name: '',
       l_name: '',
       email: '',
@@ -129,14 +87,24 @@ class RegisterForm extends Component {
             type: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            setTimeout(() => {
-              resetForm()
-              setSubmitting(true)
-            }, 500)
-          }}
+          // onSubmit={(values, { setSubmitting, resetForm }) => {
+          //   setTimeout(() => {
+          //      resetForm()
+          //      setSubmitting(true)
+          //      alert(
+          //       `${this.state.f_name} ${this.state.f_name}  Registered Successfully !!!!`
+          //      )
+          //   }, 500)
+          // }}
         >
-          {({ values, errors, touched, handleBlur, isSubmitting }) => (
+          {({
+            values,
+            errors,
+            touched,
+            handleBlur,
+            handleChange,
+            isSubmitting,
+          }) => (
             <form onSubmit={this.handleSubmit}>
               <div className='row row-fields row-1'>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
@@ -144,9 +112,9 @@ class RegisterForm extends Component {
                     name='f_name'
                     type='text'
                     placeholder='First Name'
-                    onChange={this.firsthandler}
+                    onChange={handleChange}
                     onBlur={handleBlur}
-                    value={this.state.f_name}
+                    value={values.f_name}
                     className={
                       touched.f_name && errors.f_name ? 'has-error' : null
                     }
@@ -159,9 +127,9 @@ class RegisterForm extends Component {
                     name='l_name'
                     type='text'
                     placeholder='Last Name'
-                    onChange={this.lasthandler}
+                    onChange={handleChange}
                     onBlur={handleBlur}
-                    value={this.state.l_name}
+                    value={values.l_name}
                     className={
                       touched.l_name && errors.l_name ? 'has-error' : null
                     }
@@ -174,9 +142,9 @@ class RegisterForm extends Component {
                     name='email'
                     type='email'
                     placeholder='Email'
-                    onChange={this.emailhandler}
+                    onChange={handleChange}
                     onBlur={handleBlur}
-                    value={this.state.email}
+                    value={values.email}
                     className={
                       touched.email && errors.email ? 'has-error' : null
                     }
@@ -189,9 +157,9 @@ class RegisterForm extends Component {
                     name='password'
                     type='password'
                     placeholder='Password'
-                    onChange={this.passwordhandler}
+                    onChange={handleChange}
                     onBlur={handleBlur}
-                    value={this.state.password}
+                    value={values.password}
                     className={
                       touched.password && errors.password ? 'has-error' : null
                     }
@@ -200,13 +168,10 @@ class RegisterForm extends Component {
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  {/* <label>Gender:</label> */}
-                  <br></br>
                   <select
                     name='gender'
                     id='gender'
-                    value={values.gender}
-                    onChange={this.genderhandler}
+                    onChange={handleChange}
                     defaultValue='Select Gender'
                     onBlur={handleBlur}
                     className={
@@ -221,29 +186,26 @@ class RegisterForm extends Component {
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <label>Birthday</label>
-                  <br></br>
                   <input
                     name='birthday'
                     type='date'
-                    onChange={this.birthdayhandler}
+                    onChange={handleChange}
                     onBlur={handleBlur}
-                    value={this.state.birthday}
+                    value={values.birthday}
                     className={
                       touched.birthday && errors.birthday ? 'has-error' : null
                     }
                   ></input>
+                  <br></br>
+                  <label>Birthday</label>
                   <Error touched={touched.birthday} message={errors.birthday} />
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  {/* <label>You are a:</label> */}
-                  <br></br>
                   <select
                     name='role'
                     id='role'
-                    value={values.role}
-                    onChange={this.rolehandler}
+                    onChange={handleChange}
                     defaultValue='Select Role'
                     onBlur={handleBlur}
                     className={touched.role && errors.role ? 'has-error' : null}
@@ -255,18 +217,15 @@ class RegisterForm extends Component {
                   <Error touched={touched.role} message={errors.role} />
                 </div>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  {/* <label>You are registering as:</label> */}
-                  <br></br>
                   <select
                     name='type'
                     id='type'
-                    value={values.type}
-                    onChange={this.typehandler}
+                    onChange={handleChange}
                     defaultValue='Select your type'
                     onBlur={handleBlur}
                     className={touched.type && errors.type ? 'has-error' : null}
                   >
-                    <option defaultValue>--Choose your role--</option>
+                    <option defaultValue>Choose your type</option>
                     <option value='Voter'>Creator/Organizer</option>
                     <option value='Creator'>Voter/Participant</option>
                   </select>

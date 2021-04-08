@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.scss'
 import Home from './views/Home/Home'
@@ -22,6 +23,7 @@ function App() {
           <Route path='/register' component={SignUp} />
           <Route path='/organizer' component={Organizer} />
         </Switch>
+        <Footer />
       </Router>
     </>
   )
