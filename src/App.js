@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css'
 import Home from './views/Home/Home'
@@ -17,13 +18,15 @@ function App() {
         <Navbar />
         <Switch>
           <Route path='/' exact component={Home} />
+          {/* <Route path='/login' exact component={Login} /> */}
           <Route path='/services' component={Services} />
           <Route path='/products' component={Products} />
-          <Route path='/sign-up' component={SignUp} />
+          <Route path='/signup' component={SignUp} />
           <Route path='/register' component={Register} />
           <Route path='/organizer' component={Organizer} />
           <Route path='/login' component={Login} />
         </Switch>
+        <Footer />
       </Router>
     </>
   )

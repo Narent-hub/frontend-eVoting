@@ -1,5 +1,5 @@
 import OrganizerForm from '../../components/OranizerForm/OrganizerForm'
-import './Organizer.css'
+import './Organizer.scss'
 
 export default function Organizer() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '../Button/Button'
 import './HeroSection.css'
-import '../../App.css'
+import '../../App.scss'
 import video from '../../assets/videos/video-4.mp4'
 
 function HeroSection() {
