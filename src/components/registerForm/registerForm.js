@@ -41,7 +41,7 @@ class RegisterForm extends Component {
       role: '',
       type: '',
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   // firsthandler = (event) => {
@@ -50,26 +50,26 @@ class RegisterForm extends Component {
   //   })
   // }
 
-  handleSubmit = (event) => {
-    axios
-      .post('http://127.0.0.1:8000/api/registeredusers', this.state)
-      .then((response) => {
-        return console.log(response)
-      })
+  // handleSubmit = (event) => {
+  // axios
+  //   .post('http://127.0.0.1:8000/api/registeredusers', this.state)
+  //   .then((response) => {
+  //     return console.log(response)
+  //   })
 
-    console.log(this.state)
-    this.setState({
-      f_name: '',
-      l_name: '',
-      email: '',
-      password: '',
-      gender: '',
-      birthday: '',
-      role: '',
-      type: '',
-    })
-    event.preventDefault()
-  }
+  //   console.log(this.state)
+  //   this.setState({
+  //     f_name: '',
+  //     l_name: '',
+  //     email: '',
+  //     password: '',
+  //     gender: '',
+  //     birthday: '',
+  //     role: '',
+  //     type: '',
+  //   })
+  //   event.preventDefault()
+  // }
 
   render() {
     return (
@@ -87,15 +87,22 @@ class RegisterForm extends Component {
             type: '',
           }}
           validationSchema={validationSchema}
-          // onSubmit={(values, { setSubmitting, resetForm }) => {
-          //   setTimeout(() => {
-          //      resetForm()
-          //      setSubmitting(true)
-          //      alert(
-          //       `${this.state.f_name} ${this.state.f_name}  Registered Successfully !!!!`
-          //      )
-          //   }, 500)
-          // }}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            setSubmitting(true)
+
+            setTimeout(() => {
+              axios
+                .post('http://127.0.0.1:8000/api/registeredusers', this.state)
+                .then((response) => {
+                  console.log(response)
+                })
+              resetForm()
+              setSubmitting(false)
+              alert(
+                `${this.state.f_name} ${this.state.f_name}  Registered Successfully !!!!`
+              )
+            }, 500)
+          }}
         >
           {({
             values,
@@ -103,9 +110,10 @@ class RegisterForm extends Component {
             touched,
             handleBlur,
             handleChange,
+            handleSubmit,
             isSubmitting,
           }) => (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className='row row-fields row-1'>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
