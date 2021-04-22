@@ -42,27 +42,52 @@ function Navbar() {
 
             <li className='nav-item'>
               <Link
-                to='/services'
+                to='/about-us'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Services
+                AboutUs
               </Link>
             </li>
 
-            <li className='nav-item'>
-              <Link
-                to='/products'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Products
-              </Link>
-            </li>
+            {/* {this.state.isLoggedIn ? (
+              <li className='has-sub'>
+                <Link
+                  to='/myAccount'
+                  className='nav-links-mobile'
+                  onClick={closeMobileMenu}
+                >
+                  Dashboard
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
+            {!this.props.isLoggedIn ? (
+              <li>
+                <Link
+                  to='/login'
+                  className='nav-links-mobile'
+                  onClick={closeMobileMenu}
+                >
+                  Login
+                </Link>{' '}
+                |{' '}
+                <Link
+                  to='/register'
+                  className='nav-links-mobile'
+                  onClick={closeMobileMenu}
+                >
+                  Register
+                </Link>
+              </li>
+            ) : (
+              ''
+            )} */}
 
             <li className='nav-item'>
               <Link
-                to='/sign-up'
+                to='/Register'
                 className='nav-links-mobile'
                 onClick={closeMobileMenu}
               >

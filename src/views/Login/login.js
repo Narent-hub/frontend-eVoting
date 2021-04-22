@@ -1,7 +1,8 @@
-// import React, { useEffect, useState } from 'react';
-// import {useHistory}from 'react-router-dom';
-// import loginImg from './login.svg';
-// import './login.scss';
+import React, { Component } from 'react'
+// import { useHistory } from 'react-router-dom'
+import loginImg from './login.svg'
+import './login.scss'
+import axios from 'axios'
 
 // async function login(email, password) {
 //   let item = { email, password }
@@ -18,58 +19,96 @@
 //   this.props.history.push('/add')
 // }
 
-// function Login() {
-//   const [email, setEmail] = useState('')
-//   const [password, setPassword] = useState('')
+class Login extends Component {
+  handleChange(ee) {
+    // const { name, value } = ee.target
+    // this.setState({ [name]: value })
+    //   const { name, value } = ee.target
+    this.setState({ [ee.target.name]: ee.target.value })
+  }
 
-//   const history = useHistory()
-//   useEffect(() => {
-//     if (localStorage.getItem('user-info')) {
-//       history.push('/add')
-//     }
-//   }, [])
+  handleSubmit(e) {
+    e.preventDefault()
 
-//   return (
-//     <form>
-//       <div className='base-container'>
-//         <div className='header'>LOGIN</div>
-//         <div className='content'>
-//           <div className='image'>
-//             <img src={loginImg} />
-//           </div>
-//           <div className='form'>
-//             <div className='form-group'>
-//               <label htmlFor='username'>Username</label>
-//               <input
-//                 type='name'
-//                 placeholder='Username'
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//               />
-//             </div>
-//             <div className='form-group'>
-//               <label htmlFor='password'>Password</label>
-//               <input
-//                 type='password'
-//                 placeholder='Password'
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//               />
-//             </div>
-//           </div>
-//         </div>
-//         <div className='footer'>
-//           <button
-//             onClick={login(email, password)}
-//             type='submit'
-//             className='btn'
-//           >
-//             Login
-//           </button>
-//         </div>
-//       </div>
-//     </form>
-//   )
-// }
+    const { email, password } = this.state
+    console.log('Narent', email)
+    axios
+      .post(
+        '/api/login',
+        {
+          user: {
+            email: email,
+            password: password,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response)
+        if (response.data.logged_in) {
+          this.props.handleSuccessfulAuth(response.data)
+        }
+      })
+      .catch((error) => {
+        console.log('login error', error)
+      })
+  }
 
-// export default Login
+  constructor() {
+    super()
+    this.state = {
+      email: '',
+      password: '',
+      loginErrors: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+
+    console.log(this)
+  }
+
+  render() {
+    return (
+      <form>
+        <div className='base-container'>
+          <div className='header'>LOGIN</div>
+          <div className='content'>
+            <div className='image'>
+              <img src={loginImg} alt='' />
+            </div>
+            <div className='form'>
+              <div className='form-group'>
+                <label htmlFor='username'>Username</label>
+                <input
+                  type='name'
+                  placeholder='Username'
+                  value={this.state.email}
+                  name='email'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='password'>Password</label>
+                <input
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className='footer'>
+            <button onClick={this.handleSubmit} type='submit' className='btn'>
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    )
+  }
+}
+
+export default Login
