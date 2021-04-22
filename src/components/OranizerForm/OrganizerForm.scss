@@ -1,19 +1,22 @@
-.formInput {
-  margin: 5% 23%;
-  .pollDate {
-    color: red;
-  }
-  .form-group,
-  input {
-    border-radius: 6px;
-    height: 40px;
-    width: 50%;
-  }
-  #industry {
-    height: 40px;
-    border-radius: 6px;
-  }
-  .btnn {
-    margin-right: 10%;
+form {
+  text-align: justify;
+  .formInput {
+    margin: 5% 23%;
+    .pollDate {
+      color: red;
+    }
+    .form-group,
+    input {
+      border-radius: 6px;
+      height: 40px;
+      width: 50%;
+    }
+    #industry {
+      height: 40px;
+      border-radius: 6px;
+    }
+    .btnn {
+      margin-right: 10%;
+    }
   }
 }

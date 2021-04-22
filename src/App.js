@@ -6,10 +6,11 @@ import './App.scss'
 import Home from './views/Home/Home'
 import Services from './views/Services/Services'
 import Products from './views/Products/Products'
-import SignUp from './views/SignUp/SignUp'
 import Register from './views/Register/Register'
 import Organizer from './views/Organizer/Organizer'
 import Login from './views/Login/login'
+import MyAccount from './views/MyAccount/MyAccount'
+import AboutUs from './views/AboutUs/AboutUs'
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           {/* <Route path='/login' exact component={Login} /> */}
+          <Route path='/myaccount' component={MyAccount} />
           <Route path='/services' component={Services} />
           <Route path='/products' component={Products} />
-          <Route path='/signup' component={SignUp} />
+          <Route path='/about-us' component={AboutUs} />
           <Route path='/register' component={Register} />
           <Route path='/organizer' component={Organizer} />
           <Route path='/login' component={Login} />

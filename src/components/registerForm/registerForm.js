@@ -7,11 +7,7 @@ import Error from '../Error/Error'
 import './registerForm.scss'
 
 const validationSchema = Yup.object().shape({
-  f_name: Yup.string()
-    .min(1, 'Must have a character')
-    .max(255, 'Must be shorter!')
-    .required('First name is required'),
-  l_name: Yup.string()
+  name: Yup.string()
     .min(1, 'Must have a character')
     .max(255, 'Must be shorter!')
     .required('Last name is required'),
@@ -22,54 +18,29 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required('Must type a password')
     .min(8, 'Password is too short - should be 8 chars minimum.'),
+  password_confirmation: Yup.string()
+    .required('Must type a password')
+    .min(8, 'Password is too short - should be 8 chars minimum.'),
   gender: Yup.string().required('This field is required'),
   birthday: Yup.string().required('This field is required'),
   role: Yup.string().required('This field is required'),
-  type: Yup.string().required('This field is required'),
+  user_privilege: Yup.string().required('This field is required'),
 })
 
 class RegisterForm extends Component {
   constructor() {
     super()
     this.state = {
-      f_name: '',
-      l_name: '',
+      name: '',
       email: '',
       password: '',
+      password_confirmation: '',
       gender: '',
       birthday: '',
+      user_privilege: '',
       role: '',
-      type: '',
     }
-    // this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  // firsthandler = (event) => {
-  //   this.setState({
-  //     f_name: event.target.value,
-  //   })
-  // }
-
-  // handleSubmit = (event) => {
-  // axios
-  //   .post('http://127.0.0.1:8000/api/registeredusers', this.state)
-  //   .then((response) => {
-  //     return console.log(response)
-  //   })
-
-  //   console.log(this.state)
-  //   this.setState({
-  //     f_name: '',
-  //     l_name: '',
-  //     email: '',
-  //     password: '',
-  //     gender: '',
-  //     birthday: '',
-  //     role: '',
-  //     type: '',
-  //   })
-  //   event.preventDefault()
-  // }
 
   render() {
     return (
@@ -77,30 +48,37 @@ class RegisterForm extends Component {
         <h4>Welcome to our eVoting platform's registration form</h4>
         <Formik
           initialValues={{
-            f_name: '',
-            l_name: '',
+            name: '',
             email: '',
-            password: '',
             gender: '',
             birthday: '',
+            password: '',
+            password_confirmation: '',
+            user_privilege: '',
             role: '',
-            type: '',
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setSubmitting(true)
-
+            console.log(values)
             setTimeout(() => {
               axios
-                .post('http://127.0.0.1:8000/api/registeredusers', this.state)
+                .post('http://127.0.0.1:8000/api/register', {
+                  name: values.name,
+                  email: values.email,
+                  gender: values.gender,
+                  birthday: values.birthday,
+                  user_privilege: values.user_privilege,
+                  role: values.role,
+                  password: values.password,
+                  password_confirmation: values.password_confirmation,
+                })
                 .then((response) => {
                   console.log(response)
                 })
               resetForm()
               setSubmitting(false)
-              alert(
-                `${this.state.f_name} ${this.state.f_name}  Registered Successfully !!!!`
-              )
+              alert(`${values.name} Registered Successfully !!!!`)
             }, 500)
           }}
         >
@@ -117,32 +95,15 @@ class RegisterForm extends Component {
               <div className='row row-fields row-1'>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <input
-                    name='f_name'
+                    name='name'
                     type='text'
-                    placeholder='First Name'
+                    placeholder='Full Name'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.f_name}
-                    className={
-                      touched.f_name && errors.f_name ? 'has-error' : null
-                    }
+                    value={values.name}
+                    className={touched.name && errors.name ? 'has-error' : null}
                   ></input>
-                  <Error touched={touched.f_name} message={errors.f_name} />
-                </div>
-
-                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
-                  <input
-                    name='l_name'
-                    type='text'
-                    placeholder='Last Name'
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.l_name}
-                    className={
-                      touched.l_name && errors.l_name ? 'has-error' : null
-                    }
-                  ></input>
-                  <Error touched={touched.l_name} message={errors.l_name} />
+                  <Error touched={touched.name} message={errors.name} />
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
@@ -173,6 +134,27 @@ class RegisterForm extends Component {
                     }
                   ></input>
                   <Error touched={touched.password} message={errors.password} />
+                </div>
+
+                <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
+                  <input
+                    name='password_confirmation'
+                    type='password'
+                    placeholder='Confirm Password'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password_confirmation}
+                    className={
+                      touched.password_confirmation &&
+                      errors.password_confirmation
+                        ? 'has-error'
+                        : null
+                    }
+                  ></input>
+                  <Error
+                    touched={touched.password_confirmation}
+                    message={errors.password_confirmation}
+                  />
                 </div>
 
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
@@ -226,18 +208,25 @@ class RegisterForm extends Component {
                 </div>
                 <div className='formInput mobile-col col-sm-12 col-md-6 col-lg-12'>
                   <select
-                    name='type'
+                    name='user_privilege'
                     id='type'
                     onChange={handleChange}
                     defaultValue='Select your type'
                     onBlur={handleBlur}
-                    className={touched.type && errors.type ? 'has-error' : null}
+                    className={
+                      touched.user_privilege && errors.user_privilege
+                        ? 'has-error'
+                        : null
+                    }
                   >
                     <option defaultValue>Choose your type</option>
                     <option value='Voter'>Creator/Organizer</option>
                     <option value='Creator'>Voter/Participant</option>
                   </select>
-                  <Error touched={touched.type} message={errors.type} />
+                  <Error
+                    touched={touched.user_privilege}
+                    message={errors.typuser_privilegee}
+                  />
                 </div>
                 <button
                   type='submit'
